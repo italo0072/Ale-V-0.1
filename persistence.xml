@@ -1,0 +1,11 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.0">
+    <persistence-unit name="miUnidadDePersistencia">
+        <jta-data-source>java:jboss/datasources/miDatasource</jta-data-source>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://example.cockroachlabs.cloud:26257/academia_db" />
+            <property name="javax.persistence.jdbc.user" value="admin_user" />
+            <property name="javax.persistence.jdbc.password" value="securePassword123" />
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+        </properties>
+    </persistence-unit>
+</persistence>

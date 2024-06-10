@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/template.xhtml">
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="alumno" value="Alumno: " />
+                <h:selectOneMenu id="alumno" value="#{inscripcionBean.inscripcion.alumno}">
+                    <f:selectItems value="#{inscripcionBean.alumnos}" var="alumno" itemValue="#{alumno}" itemLabel="#{alumno.nombre}" />
+                </h:selectOneMenu>
+
+                <h:outputLabel for="materia" value="Materia: " />
+                <h:selectOneMenu id="materia" value="#{inscripcionBean.inscripcion.materia}">
+                    <f:selectItems value="#{inscripcionBean.materias}" var="materia" itemValue="#{materia}" itemLabel="#{materia.nombre}" />
+                </h:selectOneMenu>
+
+                <h:outputLabel for="ciclo" value="Ciclo: " />
+                <h:inputText id="ciclo" value="#{inscripcionBean.inscripcion.ciclo}" />
+
+                <h:outputLabel for="anio" value="Año: " />
+                <h:inputText id="anio" value="#{inscripcionBean.inscripcion.anio}" />
+
+                <h:commandButton value="Guardar" action="#{inscripcionBean.save}" />
+            </h:panelGrid>
+
+            <h:dataTable value="#{inscripcionBean.inscripciones}" var="inscripcion">
+                <h:column>
+                    <f:facet name="header">Alumno</f:facet>
+                    #{inscripcion.alumno.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Materia</f:facet>
+                    #{inscripcion.materia.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Ciclo</f:facet>
+                    #{inscripcion.ciclo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Año</f:facet>
+                    #{inscripcion.anio}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Fecha de Inscripción</f:facet>
+                    #{inscripcion.fechaInscripcion}
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Editar" action="#{inscripcionBean.setInscripcion(inscripcion)}" />
+                    <h:commandButton value="Eliminar" action="#{inscripcionBean.delete(inscripcion.id)}" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
